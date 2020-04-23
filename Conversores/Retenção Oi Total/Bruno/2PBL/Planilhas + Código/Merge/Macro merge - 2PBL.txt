@@ -1,0 +1,670 @@
+'Enum
+Public Enum ErrorType
+    xlEtInfo
+    xlEtWarning
+    xlEtError
+End Enum
+
+'Colunas para a planilha original
+Dim ESTRATEGIA_COL As Integer
+Dim CAMPANHA_COL As Integer
+Dim RESUMO_COL As Integer
+Dim PLANO_OFERTA_COL As Integer
+Dim OFERTA_COL As Integer
+Dim PRECO_FX_COL As Integer
+Dim PRECO_TV_COL As Integer
+Dim PRECO_SVA_COL As Integer
+Dim PRECO_BL_COL As Integer
+Dim PRECO_TOT_COL As Integer
+Dim VAL_MULTA_COL As Integer
+Dim FIDELIDADE_COL As Integer
+Dim BENEFICIO_TIPO_COL As Integer
+Dim ONLINE_CONT_COL As Integer
+Dim PACOTE_TV_COL As Integer
+Dim PLANO_TV_DVR_COL As Integer
+Dim VELOC_BL_COL As Integer
+Dim LD_COL As Integer
+Dim VC_COL As Integer
+
+Dim LAST_PROD_COL As Integer
+Dim FIRST_PROD_COL As Integer
+
+'Colunas para a coluna a ser criada
+Dim PLANO_FIXO_COL As Integer
+Dim PRE_SEL_CONT_ONLINE_COL As Integer
+Dim PRECO_TARGT_OFR_COL As Integer
+Dim FRANQUIA_VCLD_COL As Integer
+Dim ALAVANCA_COL As Integer
+Dim PRECO_TOTAL_COL As Integer
+Dim PRECO_MVL_VOZ_COL As Integer
+Dim PRECO_MVL_DADOS_COL As Integer
+Dim PRECO_FIXO_FID_COL As Integer
+Dim PRECO_LD_CFIDEL_COL As Integer
+Dim PRECO_VC_CFIDEL_COL As Integer
+Dim PRECO_VX_SSVA_COL As Integer
+Dim PRECO_VX_CSVA_COL As Integer
+Dim PRECO_VX_SVA_FID_COL As Integer
+Dim CAMPANHA_VOZ_SLD_SVC_FIDEL_COL As Integer
+Dim CAMPANHA_VOZ_SLD_CVC_FIDEL_COL As Integer
+Dim CAMPANHA_VOZ_CLD_SVC_FIDEL_COL As Integer
+Dim CAMPANHA_VOZ_CLD_CVC_FIDEL_COL As Integer
+Dim OFERTA_VOZ_SLD_SVC_FIDEL_COL As Integer
+Dim OFERTA_VOZ_SLD_CVC_FIDEL_COL As Integer
+Dim OFERTA_VOZ_CLD_SVC_FIDEL_COL As Integer
+Dim OFERTA_VOZ_CLD_CVC_FIDEL_COL As Integer
+Dim BUNDLE_OFERTA_COL As Integer
+Dim MIN_VC_OFERTA_COL As Integer
+Dim MIN_LD_OFERTA_COL As Integer
+Dim MULTA_FID_COL As Integer
+Dim OPCAO_SVA_COL As Integer
+Dim OPCAO_SD_COL As Integer
+Dim TIPO_PRECO_COL As Integer
+Dim MESES_FIDEL_COL As Integer
+Dim VELOC_VX_COL As Integer
+Dim PACK_TV_COL As Integer
+Dim OFERTA_DVR_COL As Integer
+Dim PLANO_TV_DVR As Integer
+Dim PRECO_TV_CFIDEL_COL As Integer
+Dim SELECAO_CONT_ONLINE_COL As Integer
+Dim LABEL_COL As Integer
+
+'linhas iniciais de processamento
+Dim INI_LINE_PROD As Integer
+Dim INI_LINE_RES As Integer
+Dim END_COL_RES As Integer
+Dim KEY_COL As Integer
+
+'Planilha de tratamento de erro
+Dim FINAL_WORKSHEET As String
+Dim ERROR_WORKSHEET As String
+Dim ERROR_LINE_COL As String
+Dim ERROR_MSG_COL As String
+Dim WorkingXlSheet As String
+Dim sheetOption As String
+Dim ErrorLine As Long
+
+Dim LastColumn As Long
+Dim LineColumn As Long
+Dim ErrorColumn As Long
+
+'Valor de meses de fidelidade default
+Dim FIDEL_DEFAULT As Integer
+
+'Valores de origem de planilha
+Dim AQUISICAO_DEFAULT As String
+Dim MIGRACAO_DEFAULT As String
+
+'Mensagens de erro
+Dim TV_PACK_ERROR As String
+Dim ONLINE_CONT_ERROR As String
+Dim SPEED_FMT_ERROR As String
+Dim DIF_ORIG_ERROR As String
+
+'Valores de label
+Dim IF_LABEL As String
+Dim ELSE_LABEL As String
+Dim OTHERWISE_LABEL As String
+
+'Constantes de cor
+Dim Red As Long
+Dim Orange As Long
+Dim Yellow As Long
+
+'Colunas de ordenação
+'Dim sortColumns As Variant
+
+Sub Initialize_Cols()
+    'ESTRATEGIA_COL = 31
+    CAMPANHA_COL = 29
+    'RESUMO_COL = 28
+    PLANO_OFERTA_COL = 28
+    OFERTA_COL = 30
+    PRECO_FX_COL = 9
+    PRECO_TV_COL = 17
+    'PRECO_SVA_COL = 30
+    PRECO_BL_COL = 11
+    PRECO_TOT_COL = 27
+    VAL_MULTA_COL = 25
+    'FIDELIDADE_COL = 135
+    'BENEFICIO_TIPO_COL = 139
+    'LAST_PROD_COL = 122
+    'FIRST_PROD_COL = 62
+    ONLINE_CONT_COL = 12
+    PACOTE_TV_COL = 13
+    VELOC_BL_COL = 10
+    VC_COL = 6
+    LD_COL = 7
+    
+    LABEL_COL = 1
+    PLANO_FIXO_COL = 3
+    PRECO_TARGT_OFR_COL = 4
+    PRE_SEL_CONT_ONLINE_COL = 13
+    FRANQUIA_VCLD_COL = 14
+    ALAVANCA_COL = 15
+    PRECO_TOTAL_COL = 17
+    PRECO_MVL_VOZ_COL = 18
+    PRECO_MVL_DADOS_COL = 19
+    PRECO_FIXO_FID_COL = 20
+    PRECO_LD_CFIDEL_COL = 21
+    PRECO_VC_CFIDEL_COL = 22
+    PRECO_VX_SSVA_COL = 24
+    PRECO_VX_CSVA_COL = 25
+    PRECO_VX_SVA_FID_COL = 26
+    CAMPANHA_VOZ_SLD_SVC_FIDEL_COL = 31
+    CAMPANHA_VOZ_SLD_CVC_FIDEL_COL = 32
+    CAMPANHA_VOZ_CLD_SVC_FIDEL_COL = 33
+    CAMPANHA_VOZ_CLD_CVC_FIDEL_COL = 34
+    OFERTA_VOZ_SLD_SVC_FIDEL_COL = 35
+    OFERTA_VOZ_SLD_CVC_FIDEL_COL = 36
+    OFERTA_VOZ_CLD_SVC_FIDEL_COL = 37
+    OFERTA_VOZ_CLD_CVC_FIDEL_COL = 38
+    BUNDLE_OFERTA_COL = 39
+    MIN_VC_OFERTA_COL = 40
+    MIN_LD_OFERTA_COL = 41
+    MULTA_FID_COL = 42
+    OPCAO_SVA_COL = 43
+    OPCAO_SD_COL = 44
+    TIPO_PRECO_COL = 47
+    MESES_FIDEL_COL = 49
+    VELOC_VX_COL = 11
+    
+    INI_LINE_PROD = 3
+    INI_LINE_RES = 5
+    END_COL_RES = 49
+    KEY_COL = END_COL_RES + 1
+    
+    FINAL_WORKSHEET = "DT_FINAL"
+    ERROR_WORKSHEET = "Erro"
+    ERROR_LINE_COL = "Linha"
+    ERROR_MSG_COL = "Mensagem de Erro"
+    ErrorLine = 5
+    
+    If ThisWorkbook.Sheets(1).Shapes("optBtnFidel").ControlFormat.Value = xlOn Then
+'        WorkingXlSheet = "3PRes " & ThisWorkbook.Sheets(1).Shapes("optBtnFidel").ControlFormat.Caption
+        sheetOption = "Com Fidelidade"
+        FIDEL_DEFAULT = 12
+    ElseIf ThisWorkbook.Sheets(1).Shapes("optBtnNoFidel").ControlFormat.Value = xlOn Then
+        'WorkingXlSheet = "3PRes " & ThisWorkbook.Sheets(1).optBtnNoFidel.Caption
+        sheetOption = "Sem Fidelidade"
+        FIDEL_DEFAULT = Empty
+    End If
+    
+    WorkingXlSheet = "2PBL " & sheetOption
+    
+    TV_PACK_ERROR = "Pacote de TV não previsto"
+    ONLINE_CONT_ERROR = "Combinação de Conteúdo Online (Benefício BL) não prevista"
+    SPEED_FMT_ERROR = "Formato ou valor de velocidade não previsto"
+    DIF_ORIG_ERROR = "Mesmo preço com origens em Migração e Aquisição"
+    
+    AQUISICAO_DEFAULT = "Aquisicao"
+    MIGRACAO_DEFAULT = "Migracao"
+    
+    IF_LABEL = "if"
+    ELSE_LABEL = "else if"
+    OTHERWISE_LABEL = "otherwise"
+    
+    Red = RGB(255, 0, 0)
+    Yellow = RGB(255, 255, 0)
+    Orange = RGB(255, 165, 0)
+    
+    If WorksheetExists(ERROR_WORKSHEET) Then
+        Application.DisplayAlerts = False
+        ThisWorkbook.Sheets(ERROR_WORKSHEET).Delete
+        Application.DisplayAlerts = True
+    End If
+    
+    'sortColumns = Array(VELOC_VX_COL, _
+    '                    PRE_SEL_CONT_ONLINE_COL, _
+    '                    FRANQUIA_VC_LD, _
+    '                    PLANO_FIXO_COL, _
+    '                    ALAVANCA_COL, _
+    '                    PRECO_TOTAL_COL)
+End Sub
+
+Sub InsereErro(ByVal errorOrigin As Excel.Worksheet, _
+               ByVal insertPoint As Excel.Worksheet, _
+               Row As Long, _
+               Optional column As Long, _
+               Optional errorMessage As String, _
+               Optional typeError As ErrorType = xlEtError)
+    Dim xlWb As Excel.Worksheet
+    Dim xlWbAfter As Excel.Worksheet
+    
+    If insertPoint Is Nothing Then
+        Set xlWbAfter = ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count)
+    Else
+        Set xlWbAfter = insertPoint
+    End If
+    
+    If Not WorksheetExists(ERROR_WORKSHEET) Then
+        Set xlWb = ThisWorkbook.Sheets.Add(After:=xlWbAfter)
+        xlWb.Name = ERROR_WORKSHEET
+        With errorOrigin
+            .Range(.Cells(1, 1), .Cells(4, 1)).EntireRow.Copy Destination:=xlWb.Cells(1, 1)
+            LastColumn = .Cells(4, .Columns.Count).End(xlToLeft).column
+        End With
+        
+        LineColumn = LastColumn + 1
+        ErrorColumn = LineColumn + 1
+        
+        With xlWb
+            .Range(.Cells(3, LastColumn), .Cells(4, LastColumn)).Copy
+            .Range(.Cells(3, LineColumn), .Cells(4, ErrorColumn)).PasteSpecial xlPasteFormats
+            .Cells(4, LineColumn).Value = ERROR_LINE_COL
+            .Cells(4, ErrorColumn).Value = ERROR_MSG_COL
+        End With
+    Else
+        Set xlWb = ThisWorkbook.Sheets(ERROR_WORKSHEET)
+    End If
+
+    With errorOrigin
+        .Range(.Cells(Row, 1), .Cells(Row, LastColumn)).EntireRow.Copy Destination:=xlWb.Cells(ErrorLine, 1)
+        .Activate
+        If (Not IsEmpty(column)) And (column > 0) Then
+            .Range(.Cells(Row, column), .Cells(Row, column)).Select
+        Else
+            .Range(.Cells(Row, 1), .Cells(Row, LastColumn)).EntireRow.Select
+        End If
+        
+        If typeError = xlEtError Then
+            Selection.Font.Bold = True
+            Selection.Font.Color = Red
+        ElseIf typeError = xlEtWarning Then
+            Selection.Font.Italic = True
+            Selection.Font.Color = Orange
+        End If
+    End With
+
+    With xlWb
+        If typeError = xlEtError Then
+            .Cells(ErrorLine, LineColumn).Value = "Erro: "
+        ElseIf typeError = xlEtWarning Then
+            .Cells(ErrorLine, LineColumn).Value = "Alerta: "
+        ElseIf typeError = xlEtInfo Then
+            .Cells(ErrorLine, LineColumn).Value = "Info: "
+        End If
+        
+        .Cells(ErrorLine, LineColumn).Value = .Cells(ErrorLine, LineColumn).Value & "Linha " & Row - 2
+        If (Not IsEmpty(column)) And (column > 0) Then
+            .Cells(ErrorLine, LineColumn).Value = .Cells(ErrorLine, LineColumn).Value & ", Coluna: " & column
+        End If
+        .Cells(ErrorLine, ErrorColumn).Value = errorMessage
+    End With
+    
+    ErrorLine = ErrorLine + 1
+End Sub
+
+Sub Conversor(ByVal prodWrkBook As Excel.Workbook, ByVal e1 As String, _
+              ByVal actualWrkBook As Excel.Workbook, ByVal e2 As String)
+    Dim campanha As String
+    Dim oferta As String
+    Dim plano As String
+    Dim conteudoOnline As String
+    Dim precoFX As Double
+    Dim tipoPrecoBL As String
+    Dim velocBL As String
+    Dim precoBL As Double
+    Dim precoTV As Double
+    Dim precoTotal As Double
+    Dim precoSVA As Double
+    Dim multa As Double
+    Dim mesesFidel As Integer
+    Dim ld As String
+    Dim vc As String
+    Dim pacoteTVTemp As String
+    Dim pacoteTV As String
+    
+    Dim estrategiaVal1 As String
+    Dim estrategiaVal2 As String
+    
+    Dim isLD As Boolean
+    Dim isVC As Boolean
+    Dim isDVR As Boolean
+    Dim isSVA As Boolean
+    
+    Dim Row As Long
+    Dim rowU As Long
+    Dim rowL As Long
+    
+    Dim speedVerified As Boolean
+    
+    Dim thisApp As Excel.Application
+    Dim dataSheet1 As Excel.Worksheet
+    Dim dataSheet2 As Excel.Worksheet
+    Dim updateSheet As Excel.Worksheet
+    Dim newSheet As Excel.Worksheet
+    Dim errorSheet As Excel.Worksheet
+    
+    Dim rnEvaluation As Excel.Range
+    Dim rnSelected As Excel.Range
+    Dim rnTextCells As Excel.Range
+    Dim rnNumCells As Excel.Range
+    Dim rnSource As Excel.Range
+    Dim rnTarget As Excel.Range
+
+    Set thisApp = prodWrkBook.Parent
+    
+    Set dataSheet1 = prodWrkBook.Sheets(1)
+    Set dataSheet2 = actualWrkBook.Sheets(1)
+    
+    Set updateSheet = ThisWorkbook.Sheets(WorkingXlSheet)
+    Clean updateSheet
+    
+    estrategiaVal1 = "=*" & e1 & "*"
+    estrategiaVal2 = "=*" & e2 & "*"
+    
+    Row = INI_LINE_PROD
+    rowU = INI_LINE_RES
+    rowL = rowU
+    
+    'Verifica se os headers são iguais, para tentar determinar se as planilhas são do mesmo tipo
+    If Not RangesEqual(dataSheet1.Range(dataSheet1.Cells(1, 1), dataSheet1.Cells(2, END_COL_RES)), _
+                       dataSheet2.Range(dataSheet2.Cells(1, 1), dataSheet2.Cells(2, END_COL_RES))) Then
+        MsgBox "As planilhas precisam ser do tipo " & sheetOption, vbExclamation, "Headers diferentes entre as planilhas"
+        End
+    End If
+    
+    'Verifica se os headers são iguais ao modelo, para tentar determinar se as planilhas são do mesmo tipo
+    If Not RangesEqual(dataSheet1.Range(dataSheet1.Cells(1, 1), dataSheet1.Cells(2, END_COL_RES)), _
+                       updateSheet.Range(updateSheet.Cells(3, 1), updateSheet.Cells(4, END_COL_RES))) Then
+        MsgBox "As planilhas precisam ser do tipo " & sheetOption, vbExclamation, "Headers diferentes ao padrão"
+        End
+    End If
+    
+    With dataSheet1
+        .AutoFilterMode = False
+        Set rnEvaluation = .Range(.Cells(Row - 1, 1), .Cells(.UsedRange.Rows.Count, KEY_COL))
+    End With
+    
+    On Error Resume Next
+    
+    With rnEvaluation
+        .AutoFilter Field:=TIPO_PRECO_COL, Criteria1:=estrategiaVal1, VisibleDropDown:=False
+        'Copy-Pastes do range completo
+        .Offset(1, 0).Resize(rnEvaluation.Rows.Count - 1).SpecialCells(xlCellTypeVisible).Copy
+    End With
+        
+    If Err.Number = 0 Then
+        With updateSheet
+            'Pastes para ranges de textos
+            .Cells(rowU, 1).PasteSpecial xlPasteValues
+            rowL = .Range(.Cells(1, 3), .Cells(.Rows.Count, 3).End(xlUp)).Rows.Count
+            .Range(.Cells(rowU, PRECO_TARGT_OFR_COL), .Cells(rowL, PRECO_TARGT_OFR_COL)).Value = 0
+            .Range(.Cells(rowU, PRECO_TOTAL_COL), .Cells(rowL, PRECO_VX_SVA_FID_COL)).Value = 0
+            If (Not IsEmpty(FIDEL_DEFAULT)) And (FIDEL_DEFAULT > 0) Then
+                .Range(.Cells(rowU, MIN_VC_OFERTA_COL), .Cells(rowL, MULTA_FID_COL)).Value = 0
+                .Range(.Cells(rowU, MESES_FIDEL_COL), .Cells(rowL, MESES_FIDEL_COL)).Value = 0
+            Else
+                .Range(.Cells(rowU, MIN_VC_OFERTA_COL), .Cells(rowL, MIN_LD_OFERTA_COL)).Value = 0
+            End If
+            
+            'Pastes para ranges de valores
+            .Cells(rowU, 1).PasteSpecial xlPasteValues, xlPasteSpecialOperationAdd
+        End With
+
+        rowU = rowL + 1
+    End If
+    
+    On Error GoTo 0
+
+    With dataSheet2
+        .AutoFilterMode = False
+        Set rnEvaluation = .Range(.Cells(Row - 1, 1), .Cells(.UsedRange.Rows.Count, KEY_COL))
+    End With
+
+    On Error Resume Next
+
+    With rnEvaluation
+        .AutoFilter Field:=TIPO_PRECO_COL, Criteria1:=estrategiaVal2, VisibleDropDown:=False
+        'Copy-Pastes do range completo
+        .Offset(1, 0).Resize(rnEvaluation.Rows.Count - 1).SpecialCells(xlCellTypeVisible).Copy
+    End With
+
+    If Err.Number = 0 Then
+        With updateSheet
+            'Pastes para ranges de textos
+            .Cells(rowU, 1).PasteSpecial xlPasteValues
+            rowL = .Range(.Cells(1, 3), .Cells(.Rows.Count, 3).End(xlUp)).Rows.Count
+            .Range(.Cells(rowU, PRECO_TARGT_OFR_COL), .Cells(rowL, PRECO_TARGT_OFR_COL)).Value = 0
+            .Range(.Cells(rowU, PRECO_TOTAL_COL), .Cells(rowL, PRECO_VX_SVA_FID_COL)).Value = 0
+            If (Not IsEmpty(FIDEL_DEFAULT)) And (FIDEL_DEFAULT > 0) Then
+                .Range(.Cells(rowU, MIN_VC_OFERTA_COL), .Cells(rowL, MULTA_FID_COL)).Value = 0
+                .Range(.Cells(rowU, MESES_FIDEL_COL), .Cells(rowL, MESES_FIDEL_COL)).Value = 0
+            Else
+                .Range(.Cells(rowU, MIN_VC_OFERTA_COL), .Cells(rowL, MIN_LD_OFERTA_COL)).Value = 0
+            End If
+            
+            'Pastes para ranges de valores
+            .Cells(rowU, 1).PasteSpecial xlPasteValues, xlPasteSpecialOperationAdd
+        End With
+
+        rowU = rowL + 1
+    End If
+
+    On Error GoTo 0
+
+    Row = INI_LINE_RES
+    Do While Row < rowU
+        updateSheet.Cells(Row, KEY_COL).Value = updateSheet.Cells(Row, VELOC_VX_COL).Value & _
+                                                updateSheet.Cells(Row, PRE_SEL_CONT_ONLINE_COL).Value & _
+                                                updateSheet.Cells(Row, FRANQUIA_VCLD_COL).Value & _
+                                                updateSheet.Cells(Row, PLANO_FIXO_COL).Value & _
+                                                updateSheet.Cells(Row, ALAVANCA_COL).Value
+
+        Row = Row + 1
+    Loop
+    
+    'Remove duplicidade do resultado final
+    With updateSheet
+        'Concatenação da chave, porque RemoveDuplicates só permite Arrays de 2 posições no máximo.
+'        .Cells(INI_LINE_RES, KEY_COL).FillDown
+        Set rnSource = .Range(.Cells(INI_LINE_RES, 1), .Cells(rowU - 1, KEY_COL))
+        rnSource.Sort key1:=.Range(.Cells(INI_LINE_RES, KEY_COL), .Cells(rowU - 1, KEY_COL)), _
+                      key2:=.Range(.Cells(INI_LINE_RES, PRECO_TOTAL_COL), .Cells(rowU - 1, PRECO_TOTAL_COL)), _
+                      key3:=.Range(.Cells(INI_LINE_RES, TIPO_PRECO_COL), .Cells(rowU - 1, TIPO_PRECO_COL))
+        rnSource.RemoveDuplicates Columns:=Array(KEY_COL, PRECO_TOTAL_COL, TIPO_PRECO_COL), Header:=xlNo
+        .Columns(KEY_COL).EntireColumn.Hidden = True
+    End With
+    
+    WrkBookAvg updateSheet
+End Sub
+
+Private Sub WrkBookAvg(Optional xlSheet As Excel.Worksheet)
+    Dim Row As Long
+    
+    Dim dataSheet As Excel.Worksheet
+    
+    If xlSheet Is Nothing Then
+        Set dataSheet = ThisWorkbook.Sheets(WorkingXlSheet)
+    ElseIf WorksheetExists(xlSheet.Name) Then
+        Set dataSheet = xlSheet
+    Else
+        Set dataSheet = ThisWorkbook.Sheets(WorkingXlSheet)
+    End If
+        
+    Row = INI_LINE_RES
+    
+    Do While Not (IsEmpty(dataSheet.Cells(Row, KEY_COL).Value))
+        If LCase(dataSheet.Cells(Row, KEY_COL).Value) = LCase(dataSheet.Cells(Row + 1, KEY_COL).Value) Then
+            dataSheet.Cells(Row, PRECO_TARGT_OFR_COL).Value = _
+            (dataSheet.Cells(Row, PRECO_TOTAL_COL).Value + _
+             dataSheet.Cells(Row + 1, PRECO_TOTAL_COL).Value) / 2
+             
+            'Excel possui erro no tratamento de ponto flutuante e uma das soluções indicadas é o uso da função Round
+            'https://support.microsoft.com/en-us/help/214118/how-to-correct-rounding-errors-in-floating-point-arithmetic
+            If LCase(dataSheet.Cells(Row, TIPO_PRECO_COL).Value) <> LCase(dataSheet.Cells(Row + 1, TIPO_PRECO_COL).Value) And _
+               Round(dataSheet.Cells(Row, PRECO_TOTAL_COL).Value, 2) = Round(dataSheet.Cells(Row + 1, PRECO_TOTAL_COL).Value, 2) And _
+               (Not IsEmpty(dataSheet.Cells(Row + 1, KEY_COL).Value)) Then
+                InsereErro dataSheet, dataSheet, Row, errorMessage:=DIF_ORIG_ERROR
+                InsereErro dataSheet, dataSheet, Row + 1, errorMessage:=DIF_ORIG_ERROR
+            End If
+        Else
+            'Problema com valores anteriores calculados ou quebra de chave
+            dataSheet.Cells(Row, PRECO_TARGT_OFR_COL).Value = 99999
+        End If
+
+        If Row <> INI_LINE_RES Then
+            dataSheet.Cells(Row, LABEL_COL) = ELSE_LABEL
+        Else
+            dataSheet.Cells(Row, LABEL_COL) = IF_LABEL
+        End If
+        
+        Row = Row + 1
+    Loop
+        
+    dataSheet.Cells(Row, LABEL_COL) = OTHERWISE_LABEL
+End Sub
+
+Private Sub Clean(Optional xlSheet As Excel.Worksheet)
+    Dim rowI As Long
+    Dim rowL As Long
+    
+    Dim dataSheet As Excel.Worksheet
+    
+    If xlSheet Is Nothing Then
+        Set dataSheet = ThisWorkbook.Sheets(1)
+    ElseIf WorksheetExists(xlSheet.Name) Then
+        Set dataSheet = xlSheet
+    Else
+        Set dataSheet = ThisWorkbook.Sheets(1)
+    End If
+    
+    With dataSheet
+        rowI = INI_LINE_RES
+        rowL = .Cells(.Rows.Count, PLANO_FIXO_COL).End(xlUp).Row
+
+        If rowI <= rowL Then
+            .Range(.Cells(rowI, 1), .Cells(rowL + 1, KEY_COL)).ClearContents
+        End If
+    End With
+End Sub
+
+Function WorksheetExists(sheetName As String, Optional wb As Excel.Workbook)
+    Dim s As Excel.Worksheet
+    
+    If wb Is Nothing Then Set wb = ThisWorkbook
+    
+    On Error Resume Next
+    Set s = wb.Sheets(sheetName)
+    If Err.Number > 0 Then
+        WorksheetExists = False
+    Else
+        WorksheetExists = True
+    End If
+    On Error GoTo 0
+End Function
+
+Public Function RangesEqual(r1 As Range, r2 As Range) As Boolean
+    RangesEqual = Evaluate("and(" & r1.Address(External:=True) & "=" & r2.Address(External:=True) & ")")
+End Function
+
+Sub BtnImport_Click()
+    Dim str1FileToOpen As String
+    Dim str2FileToOpen As String
+    Dim newFile As String
+    Dim currentFile As String
+    
+    Dim estrategia1 As String
+    Dim estrategia2 As String
+    Dim title As String
+
+    Dim actBook As Excel.Workbook
+    Dim firstWrkBook As Excel.Workbook
+    Dim secondWrkBook As Excel.Workbook
+
+    Application.ScreenUpdating = False
+    
+    Initialize_Cols
+
+    currentFile = ThisWorkbook.FullName
+    
+    title = "Escolha um arquivo para abrir"
+    str1FileToOpen = Application.GetOpenFilename(title:=title, _
+                                                 fileFilter:="Excel Files *.xls* (*.xls*),")
+
+    If str1FileToOpen = "False" Or str1FileToOpen = "" Then
+        MsgBox "No file selected.", vbExclamation, "Sorry!"
+        Exit Sub
+    End If
+        
+    Set firstWrkBook = Workbooks.Open(Filename:=str1FileToOpen)
+    
+    estrategia1 = Application.InputBox(Prompt:="Este arquivo é de Migração ou Aquisição?", _
+                                       title:="Migração ou Aquisição", _
+                                       Type:=2) 'String
+
+    Do While (LCase(estrategia1) <> "false" And _
+              LCase(estrategia1) <> "migração" And LCase(estrategia1) <> "migracao" And _
+              LCase(estrategia1) <> "aquisição" And LCase(estrategia1) <> "aquisicao")
+        MsgBox "Invalid value: " & estrategia1, vbExclamation, "Sorry!"
+        estrategia1 = Application.InputBox(Prompt:="Arquivo de Migração ou Aquisição?", _
+                                           title:="Valores possíveis: Migração ou Aquisição", _
+                                           Type:=2) 'String
+    Loop
+    
+    If (LCase(estrategia1) = "migração" Or LCase(estrategia1) = "migracao") Then
+        estrategia1 = MIGRACAO_DEFAULT
+        estrategia2 = AQUISICAO_DEFAULT
+    ElseIf (LCase(estrategia1) = "aquisição" Or LCase(estrategia1) = "aquisicao") Then
+        estrategia1 = AQUISICAO_DEFAULT
+        estrategia2 = MIGRACAO_DEFAULT
+    Else
+        MsgBox "File Type Cancelled. " & estrategia1, vbExclamation, "Can't continue!"
+        End
+    End If
+
+    title = "Escolha um arquivo de " & estrategia2 & " para abrir."
+    str2FileToOpen = Application.GetOpenFilename(title:=title, _
+                                                 fileFilter:="Excel Files *.xls* (*.xls*),")
+
+    If str2FileToOpen = "False" Or str2FileToOpen = "" Then
+        MsgBox "No file selected.", vbExclamation, "Sorry!"
+        Exit Sub
+    End If
+
+    Set secondWrkBook = Workbooks.Open(Filename:=str2FileToOpen)
+    
+    Conversor firstWrkBook, estrategia1, secondWrkBook, estrategia2
+    
+    newFile = Application.GetSaveAsFilename(InitialFileName:=NewFileName, _
+                                            fileFilter:="Excel Files *.xls* (*.xls*),")
+                                            
+    If newFile <> "" And newFile <> "False" Then
+        If InStr(LCase(newFile), ".xls") <= 0 Then
+            newFile = Trim(newFile) & "xlsx"
+        End If
+
+        If InStr(LCase(newFile), ".") <= 0 Then
+            newFile = Trim(newFile) & ".xlsx"
+        End If
+
+        ThisWorkbook.Sheets(WorkingXlSheet).Copy After:=secondWrkBook.Sheets(secondWrkBook.Sheets.Count)
+        Application.DisplayAlerts = False
+        secondWrkBook.Sheets(1).Delete
+        Application.DisplayAlerts = True
+
+        With secondWrkBook.Sheets(secondWrkBook.Sheets.Count)
+            .DrawingObjects.Delete
+            .Range(.Cells(1, 1), .Cells(2, 1)).EntireRow.Delete
+        End With
+        
+        If WorksheetExists(ERROR_WORKSHEET) Then
+            If WorksheetExists(sheetName:=ERROR_WORKSHEET, wb:=secondWrkBook) Then
+                Application.DisplayAlerts = False
+                secondWrkBook.Sheets(ERROR_WORKSHEET).Delete
+                Application.DisplayAlerts = True
+            End If
+            ThisWorkbook.Sheets(ERROR_WORKSHEET).Copy After:=secondWrkBook.Sheets(secondWrkBook.Sheets.Count)
+        End If
+
+        secondWrkBook.SaveAs Filename:=newFile, _
+                            FileFormat:=xlOpenXMLWorkbook, _
+                            CreateBackup:=False
+
+        firstWrkBook.Close
+        secondWrkBook.Close
+        Workbooks.Open currentFile
+    End If
+
+    Application.ScreenUpdating = True
+End Sub
