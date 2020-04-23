@@ -1,0 +1,135 @@
+Retenção Oi Total 2pTV, 2PBL, 3PRES, 3PMOVEL, 4P
+
+Geral
+DT_Preco_Regiao_RetOIT
+
+2PBL
+Estratégias 
+OiTotal_Precos_2PBL	
+OiTotalFXBLFiltros		
+OITOTAL_ADDON	
+
+DT:
+DT_Elegibilidade_ConteudoOnline_Residencial
+DT_ElegibilidadeOT2PFXBL_RentFXBL_DG_S2S
+DT_Preco_Fidel_2PBL_OiTotal_G1
+DT_Preco_SemFidel_2PBL_OiTotal_G1
+DT_PreSelecao_ConteudoOnline_OiTotal
+
+Tester:
+Terminais:
+
+#################################################################################################################################
+2PTV	
+Estratégia
+OiTotal_Precos_2PTV	
+
+DTs:
+DT_Preco_SemFidel_2PTV_OiTotal_G1
+DT_Preco_Fidel_2PTV_OiTotal_G1
+#################################################################################################################################
+
+3PRES
+Estratégias 
+OiTotal_Precos_3PRes_G1G2		
+
+DT:
+DT_Preco_Fidel_3PRES_OiTotal_G1_2MB 
+DT_Preco_Fidel_3PRES_OiTotal_G1_25MB  
+DT_Preco_Fidel_3PRES_OiTotal_G1_15MB  
+DT_Preco_Fidel_3PRES_OiTotal_G1_35MB  
+DT_Preco_Fidel_3PRES_OiTotal_G1_BLM10GB
+DT_Preco_SemFidel_3PRES_OiTotal_G1
+	
+Tester:
+Terminais:
+
+
+
+#################################################################################################################################
+DTs Residenciais
+
+Coluna TesteLab Regra geral:
+•	Ofertas com mais de um preço, marcar a oferta mais barata na coluna TesteLab como “TRUE”;
+•	Ofertas com apenas um preço, deixar a coluna TesteLab em branco;
+•	Ofertas de TV Livre devem sempre ser marcadas com “TRUE” na TesteLab;
+•	Tabelas de 2PBL deixar as ofertas mais agressivas (15 primeiras ofertas da versão 79) com “TRUE” na coluna TesteLab e com “Teste” na coluna .MovelPackage;
+o	Além disso, deixar sem o PreçoTarget preenchido
+
+
+#################################################################################################################################
+
+3PMOVEL
+Plano Movel com mesmo formato do campo MovelPackage da tabela de proposition
+
+Estratégias 
+OiTotal_Precos_3PMovel	
+
+DT:
+DT_Preco_Fidel_3PMovel_OiTotal_G1
+DT_Preco_SemFidel_3PMovel_OiTotal_G1
+
+Tester:
+Terminais:
+
+#################################################################################################################################
+
+4P
+Campanhas e ofertas AllNET numa coluna e ONNET em outra
+Plano Movel com mesmo formato do campo MovelPackage da tabela de proposition
+
+Estratégias 
+OiTotal_Precos_4P_G1G2G3		
+
+DT:
+DT_Preco_Fidel_4P_OiTotal_G1_ALLNET
+DT_Preco_Fidel_4P_OiTotal_G1_ONNET
+DT_Preco_semFidel_4P_OiTotal_G1
+
+Tester:TesterRTOTOferta
+CPFs:36009938600, 62284347487
+
+#################################################################################################################################
+3PMOVEL e 4P
+Franquias móvel:
+
+“Basico”              50 min + ilimitado oi / 500 min
+“Intermediario”      100 min + ilimitado oi / 1000 min com dados até 5GB
+“Avancado”           250 min + ilimitado oi / 1000 com com dados até 10GB
+“Top”                500 min + ilimitado oi / Franquia ilimitada
+
+  
+Foi acordado com a Oi que:
+ALLNET: preencher coluna campanha/oferta com LD e sem VC
+•	500 – Basico 
+•	1000 – Intermediario (dados até 5GB)
+•	1000 – Avancado (10GB de dados)
+•	3000 – Top
+
+Coluna MinVCoferta - Colocar 0. 
+
+ONNET: preencher coluna campanha/oferta com LD e com VC
+•	50 – Basico
+•	100 – Intermediario
+•	250 – Avancado
+•	500 – Top
+
+Coluna MinVCoferta - Colocar 999999. 
+
+- Todas as ofertas são fixo ilim? sim.
+- Preço target segue o mesmo padrão da 2PBL e 3PRES? sim
+- SVA será colocado ou será 0?sim
+- Plano conteudo online? ver com Helena 
+
+Campo .TipoPreco: sempre aquisição
+Campo EmpacotaDados: TRUE -> se classificacaoPreco for "Aquisicao"
+                     FALSE -> se classificacaoPreco for "Retencao"
+Campo ClassificacaoPreco: "Retencao" -> campanhas e ofertas com "RET" no nome
+                          "Aquisicao" -> as outras
+
+#################################################################################################################################
+Dependentes
+
+DTs
+DT_Preco_Movel_Dependentes_Por_Nivel
+DT_Preco_Movel_Dependentes

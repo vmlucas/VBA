@@ -1,0 +1,79 @@
+Sub Transform_campanha()
+    Dim camp As String
+    Dim oferta As String
+    Dim uf As String
+    Dim linhaNova As Integer
+        
+    Set dataSheet = ActiveWorkbook.Sheets("Dados")
+    Set NewSheet = ActiveWorkbook.Sheets("Nova")
+    linhaNova = 4
+    
+    For Row = 2 To 721
+         'UF'
+         uf = dataSheet.Cells(Row, 9).Value
+         NewSheet.Cells(linhaNova, 4).Value = uf
+         
+         'Atualiza as campanhas
+         camp = dataSheet.Cells(Row, 11).Value
+         'Fx'
+         If InStr(camp, "FX_100") > 0 Then
+            NewSheet.Cells(linhaNova, 1).Value = "FX 100"
+         End If
+         If InStr(camp, "FX_300") > 0 Then
+            NewSheet.Cells(linhaNova, 1).Value = "FX 300"
+         End If
+         If InStr(camp, "FX_1000") > 0 Then
+            NewSheet.Cells(linhaNova, 1).Value = "FX Ilim"
+         End If
+         
+         'LDIlim'
+         If InStr(camp, "LDIlim") > 0 Or InStr(camp, "LDILIM") > 0 Then
+            NewSheet.Cells(linhaNova, 2).Value = "LD Ilim"
+         End If
+         If InStr(camp, "LD30") > 0 Then
+            NewSheet.Cells(linhaNova, 2).Value = "LD 30"
+         End If
+         
+         'VC ILIM'
+         If InStr(camp, "VCIlim") > 0 Or InStr(camp, "VCILIM") > 0 Then
+            NewSheet.Cells(linhaNova, 3).Value = "VCIlim"
+         End If
+         If InStr(camp, "VC30") > 0 Then
+            NewSheet.Cells(linhaNova, 3).Value = "VC30"
+         End If
+         
+         'Oferta'
+         oferta = dataSheet.Cells(Row, 12).Value
+         
+         'Atualiza valores na nova planilha'
+         NewSheet.Cells(linhaNova, 6).Value = camp
+         NewSheet.Cells(linhaNova, 11).Value = oferta
+         Row = Row + 1
+         
+         camp = dataSheet.Cells(Row, 11).Value
+         oferta = dataSheet.Cells(Row, 12).Value
+         NewSheet.Cells(linhaNova, 7).Value = camp
+         NewSheet.Cells(linhaNova, 12).Value = oferta
+         Row = Row + 1
+         
+         camp = dataSheet.Cells(Row, 11).Value
+         oferta = dataSheet.Cells(Row, 12).Value
+         NewSheet.Cells(linhaNova, 8).Value = camp
+         NewSheet.Cells(linhaNova, 13).Value = oferta
+         Row = Row + 1
+         
+         camp = dataSheet.Cells(Row, 11).Value
+         oferta = dataSheet.Cells(Row, 12).Value
+         NewSheet.Cells(linhaNova, 9).Value = camp
+         NewSheet.Cells(linhaNova, 14).Value = oferta
+         Row = Row + 1
+         
+         camp = dataSheet.Cells(Row, 11).Value
+         oferta = dataSheet.Cells(Row, 12).Value
+         NewSheet.Cells(linhaNova, 10).Value = camp
+         NewSheet.Cells(linhaNova, 15).Value = oferta
+                  
+         linhaNova = linhaNova + 1
+         
+    Next Row
+End Sub

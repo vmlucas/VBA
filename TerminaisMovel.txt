@@ -1,0 +1,59 @@
+Terminais Movel
+DEfinição das regiões movel DT_Preco_Regiao_Movel 
+
+Blindagem
+Estratégia: Movel_Precos
+DTs: DT_Preco_Fidel_Movel_OiTotal_4P_G1, DT_Preco_Fidel_Movel_OCT_OiTotal_1_G1
+User:TesterBLMVNovo
+1)clientes que tenham um gasto baixo (até R$150,00) 
+Terminais: 47984414210
+
+2) clientes que estejam no portfolio Conectado indo para um Oi Mais (tenham um gasto de ligações excedentes alto R$ 60,00 )
+Terminais: 47984402085 
+
+
+Retenção
+Estratégia: Movel_Precos
+DTs: DT_Preco_Fidel_Movel_OiTotal_4P_G1, DT_Preco_Fidel_Movel_OCT_OiTotal_1_G1
+User:TesterRTMVOferta
+1) clientes que tenham um gasto baixo (até R$150,00)
+Terminais:47984414210
+
+3) clientes que tenham um gasto alto (R$200,00) 
+Terminais: 21998068297 54984454847 62984073139 31988935291 21987987722 22988332107
+
+5) clientes aleatórios que não seguiam nenhum cenários já descrito
+Terminais:91987463357
+
+
+Cobrança:
+Estratégia: Movel_Precos_Cobranca, Movel_Precos_Cobranca_OCT_OiTotal
+DTs:DT_Preco_Fidel_Movel_3PMovel_ClienteOCT_G1 
+User:TesterCOMovelOferta
+1) clientes que tenham um gasto baixo (até R$50,00) 
+CPF: 07781920406 
+52872300600 38916681049 04459851946
+
+2) clientes que estejam no portfolio Conectado indo para um Oi Mais (tenham um gasto de ligações excedentes alto R$ 60,00)
+CPF: 43398553753
+
+
+Ilha (Downgrade)
+Estratégia: Movel_Precos
+DTs: DT_Preco_Fidel_Movel_OiTotal_4P_G1, DT_Preco_Fidel_Movel_OCT_OiTotal_1_G1
+User:TesterIMMOferta
+2) clientes que estejam no portfolio Conectado indo para um Oi Mais (tenham um gasto de ligações excedentes alto R$ 60,00 -ok
+02112296442
+
+3) clientes que tenham um gasto alto (R$200,00) -ok 
+11844690750 
+24847976053 04537395982 99357259791 99357259791 99357259791 98425862787 21959595687 75241668934 02734978717
+
+5) clientes aleatórios que não seguiam nenhum cenários já descrito - ok
+49198637649 
+01920878785 38944154791 20943342368 31481760220
+
+
+
+
+

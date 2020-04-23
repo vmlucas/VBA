@@ -1,0 +1,72 @@
+Terminais FX/BL
+
+RACO FX/BL
+Estratégia: Raco_Pricing
+DTs Aquisição: PriceFixedRACOR1, PriceVeloxRACOR2
+DTs Migração:  DT_Preco_BL_Ret_2N_Raco
+user:testerRA
+Tel: 9632611889, 9632237685
+
+
+Retenção FX/BL
+Estratégia: RetentionPricing
+DTs Aquisição: PriceFixedRetentionR1A, PriceFixedRetentionR1B, PriceFixedRetentionR1C, PriceFixedRetentionR1D
+               PriceFixedRetentionR1E, PriceFixedRetentionR1RJ, PriceFixedRetentionR1MG, PriceFixedRetentionR1SegNivel
+DTs Migração: DT_Ret_Velox_R1_RES, PriceVeloxRetentionR2
+user:testerRTOferta
+Tel: 2125220390
+	 5332273547	 
+	 6333663861
+	 7932273143
+	 9536230993
+	 9632611889, 9634231323
+
+	 
+Blindagem FX/BL
+Estratégia: BlindagemPricingBlind
+DTs Aquisição:
+DTs Migração:PriceFixoBlindagemR1a, PriceFixoBlindagemR1b, PriceFixoBlindagemR1c, PriceFixoBlindagemR1d 
+             PriceVelox_Migracao_R1, PriceVelox_Migracao_R2
+user:TesterBLOferta 
+tel: 5332273547, 
+     6333121231, 
+	 6132244143, 
+	 9536238672,
+     9632812039, 9632835066
+	 
+	 
+Cobrança FX/BL (Retenção Involuntária)
+Estratégia: CobrancaPricing
+DTs Aquisição: PriceFixoCobrancaR1, PriceFixoCobrancaR2, PriceFixoCobranca_NRES
+DTs Migração: PriceVelox_Cobranca_Migracao_R1, PriceVelox_Cobranca_Migracao_R2  
+user:TesterCOOferta
+Tel: 9536272527 
+	 9632228957, 9632242922
+
+	 
+Service to Sale FX/BL
+Estratégia: RentabilizacaoPricing
+DTs Aquisição: PriceVeloxRentabilizacaoR1, PriceVeloxRentabilizacaoR2
+DTs Migração: 
+user:TesterCOOferta
+Tel: 
+
+
+Rentabilização – Fixo
+Estratégia: RentabilizacaoFixoPricingFixoVelox
+DTs Aquisição: PricingFixo_R1, PricingFixo_R2
+               PricingVelox_R1, PricingVelox_R2               
+DTs Migração: 
+user:TesterCOOferta
+Tel: 
+
+
+Ilha Migração FX/BL(Downgrade)
+Estratégia: DowngradePricing
+DTs Aquisição: PriceVeloxDowngradeR1, PriceVeloxDowngradeR2, PriceVeloxDowngradeR1_RGC, PriceVeloxDowngradeR2_RGC, PriceVeloxDowngradeContestacaoProcedenteR1
+               PriceVeloxDowngradeContestacaoProcedenteR2
+DTs Migração: 
+user:TesterCOOferta
+Tel: 
+
+

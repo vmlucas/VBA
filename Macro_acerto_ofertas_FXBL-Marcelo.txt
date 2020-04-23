@@ -1,0 +1,66 @@
+Sub Conversor()
+    Dim fidel As String
+   Dim r As Integer
+   
+   Set dataSheet = ActiveWorkbook.Sheets("Dados")
+   For Row = 2 To 1281
+         'buca dados NBA
+         fidel = dataSheet.Cells(Row, 6).Value
+           
+         If InStr(fidel, "SEM FIDEL") > 0 Then
+             'le valores
+             a = dataSheet.Cells(Row, 1).Value
+             b = dataSheet.Cells(Row, 2).Value
+             c = dataSheet.Cells(Row, 3).Value
+             d = dataSheet.Cells(Row, 4).Value
+             e = dataSheet.Cells(Row, 5).Value
+             f = dataSheet.Cells(Row, 6).Value
+             g = dataSheet.Cells(Row, 7).Value
+             h = dataSheet.Cells(Row, 8).Value
+             i = dataSheet.Cells(Row, 9).Value
+             j = dataSheet.Cells(Row, 11).Value
+             k = dataSheet.Cells(Row, 12).Value
+             
+             'escreve em nova coluna
+             r = Row - 3
+             dataSheet.Cells(r, 13).Value = a
+             dataSheet.Cells(r, 14).Value = b
+             dataSheet.Cells(r, 15).Value = c
+             dataSheet.Cells(r, 16).Value = d
+             dataSheet.Cells(r, 17).Value = e
+             dataSheet.Cells(r, 18).Value = f
+             dataSheet.Cells(r, 19).Value = g
+             dataSheet.Cells(r, 20).Value = h
+             dataSheet.Cells(r, 21).Value = i
+             dataSheet.Cells(r, 23).Value = j
+             dataSheet.Cells(r, 24).Value = k
+             r = Row - 2
+             dataSheet.Cells(r, 13).Value = a
+             dataSheet.Cells(r, 14).Value = b
+             dataSheet.Cells(r, 15).Value = c
+             dataSheet.Cells(r, 16).Value = d
+             dataSheet.Cells(r, 17).Value = e
+             dataSheet.Cells(r, 18).Value = f
+             dataSheet.Cells(r, 19).Value = g
+             dataSheet.Cells(r, 20).Value = h
+             dataSheet.Cells(r, 21).Value = i
+             dataSheet.Cells(r, 23).Value = j
+             dataSheet.Cells(r, 24).Value = k
+             r = Row - 1
+             dataSheet.Cells(r, 13).Value = a
+             dataSheet.Cells(r, 14).Value = b
+             dataSheet.Cells(r, 15).Value = c
+             dataSheet.Cells(r, 16).Value = d
+             dataSheet.Cells(r, 17).Value = e
+             dataSheet.Cells(r, 18).Value = f
+             dataSheet.Cells(r, 19).Value = g
+             dataSheet.Cells(r, 20).Value = h
+             dataSheet.Cells(r, 21).Value = i
+             dataSheet.Cells(r, 23).Value = j
+             dataSheet.Cells(r, 24).Value = k
+             
+             'apaga da linha q leu
+             Rows(Row).EntireRow.Delete
+         End If
+    Next Row
+End Sub

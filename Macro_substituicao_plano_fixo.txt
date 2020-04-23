@@ -1,0 +1,36 @@
+Sub Trasform()
+   Dim valor As String
+   Dim Length As Integer
+   Dim fim As String
+   Dim pos As Integer
+
+   fim = """"
+
+    For col = 15 To 16 'mudar conforme a disposição das colunas
+      For Row = 3 To 642 'mudar conforme numero de linhas
+         valor = Cells(Row, col).Value
+         If InStr(valor, "NAO_LOCALIZADO") = 0 Then
+          If InStr(valor, "NAO_SE_APLICA") = 0 Then
+         
+          'Fixo: FOCO R11772
+         
+            If InStr(valor, "F11620") > 0 Then
+              Length = Len(valor) - 7
+              valor = Left(valor, Length) & "R11772" & fim
+              valor = Replace(valor, "NOV16", "JUL17")
+            ElseIf InStr(valor, "F11706") > 0 Then
+              Length = Len(valor) - 7
+              valor = Left(valor, Length) & "R11772" & fim
+              valor = Replace(valor, "FEV17", "JUL17")
+            Else
+              Length = Len(valor) - 1
+              valor = Left(valor, Length) & "_R11772" & fim
+              valor = Replace(valor, "MAR16", "JUL17")
+            End If
+          End If
+         End If
+         Cells(Row, col).Value = valor
+         
+      Next Row
+    Next col
+End Sub

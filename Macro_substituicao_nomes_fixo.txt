@@ -1,0 +1,23 @@
+Sub Acerto_nome()
+   Dim uf As String
+   Dim nome As String
+   
+   'Set dataSheet = ActiveWorkbook.Sheets("Dados")
+   Set updateSheet = ActiveWorkbook.Sheets("Novo")
+   
+   Dim rowU As Integer
+   Dim pos As Integer
+   For Row = 3 To 100
+       uf = updateSheet.Cells(Row, 5).Value
+       If (InStr(uf, "PI") > 0) Then
+         For col = 13 To 16
+           nome = updateSheet.Cells(Row, col).Value
+           pos = InStr(nome, "JUL") - 1
+           
+           nome = Left(nome, pos) + "Jan18_PI_F11882"""
+           
+           updateSheet.Cells(Row, col).Value = nome
+         Next col
+       End If
+   Next Row
+End Sub

@@ -1,0 +1,13 @@
+Sub ConverTVNames()
+   Dim valor As String
+   Set Novo = ActiveWorkbook.Sheets("Final_novo")
+   Set namesMatch = ActiveWorkbook.Sheets("TV")
+   
+   For Row = 4 To 543
+         valor = Novo.Cells(Row, 6).Value
+         novoValor = Application.WorksheetFunction.VLookup(valor, namesMatch.Range("B2:D16"), 3, False)
+         
+         Novo.Cells(Row, 6).Value = novoValor
+         
+    Next Row
+End Sub

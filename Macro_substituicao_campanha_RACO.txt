@@ -1,0 +1,84 @@
+Sub Altera_Campanha()
+   Dim tm_up As String
+   Dim uf As String
+   Dim velocBL As String
+   Dim SVA_FIDEL As String
+   Dim SEM_SVA_FIDEL As String
+   Dim SVA_S_FIDEL As String
+   Dim SEM_SVA_S_FIDEL As String
+   Dim SVA_FIDEL_n As String
+   Dim SEM_SVA_FIDEL_n As String
+   Dim SVA_S_FIDEL_n As String
+   Dim SEM_SVA_S_FIDEL_n As String
+   Dim pnbl As Integer
+         
+   Set dataSheet = ActiveWorkbook.Sheets("Dados")
+   Set updateSheet = ActiveWorkbook.Sheets("Nova")
+   
+   Dim rowU As Integer
+   For Row = 3 To 370
+         'buca dados NBA
+         velocBL = updateSheet.Cells(Row, 3).Value
+         pnbl = updateSheet.Cells(Row, 5).Value
+         uf = updateSheet.Cells(Row, 6).Value
+         tm_up = updateSheet.Cells(Row, 7).Value
+         SVA_FIDEL = updateSheet.Cells(Row, 21).Value
+         SEM_SVA_FIDEL = updateSheet.Cells(Row, 23).Value
+         SVA_S_FIDEL = updateSheet.Cells(Row, 25).Value
+         SEM_SVA_S_FIDEL = updateSheet.Cells(Row, 27).Value
+         
+         '"NAO_LOCALIZADO"
+         For rowU = 2 To 99
+           Dim velocNova As String
+           Dim pnblNova As Integer
+           Dim tm_upNova As String
+           Dim tipo As String
+           Dim campanha As String
+                                 
+           tipo = dataSheet.Cells(rowU, 1).Value
+           velocNova = dataSheet.Cells(rowU, 2).Value
+           pnblNova = dataSheet.Cells(rowU, 3).Value
+           tm_upNova = dataSheet.Cells(rowU, 4).Value
+           campanha = dataSheet.Cells(rowU, 5).Value
+           
+           If InStr(velocBL, velocNova) > 0 Then
+              If InStr(tm_up, tm_upNova) > 0 Then
+                If pnbl = pnblNova Then
+                  If (InStr(uf, "AP") > 0) Or (InStr(uf, "RR") > 0) Then
+                     If InStr(tipo, "COM SVA SEM FIDEL") > 0 Then
+                        SVA_S_FIDEL_n = campanha
+                     End If
+                     If InStr(tipo, "COM SVA COM FIDEL") > 0 Then
+                        SVA_FIDEL_n = campanha
+                     End If
+                     If InStr(tipo, "SEM SVA SEM FIDEL") > 0 Then
+                        SEM_SVA_S_FIDEL_n = campanha
+                     End If
+                     If InStr(tipo, "SEM SVA COM FIDEL") > 0 Then
+                        SEM_SVA_FIDEL_n = campanha
+                     End If
+                  End If
+                End If
+              End If
+           End If
+         Next rowU
+         
+         If (InStr(uf, "AP") > 0) Or (InStr(uf, "RR") > 0) Then
+         
+           If InStr(SVA_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              updateSheet.Cells(Row, 21).Value = SVA_FIDEL_n
+           End If
+           If InStr(SEM_SVA_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              updateSheet.Cells(Row, 23).Value = SEM_SVA_FIDEL_n
+           End If
+           If InStr(SVA_S_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              updateSheet.Cells(Row, 25).Value = SVA_S_FIDEL_n
+           End If
+           If InStr(SEM_SVA_S_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              updateSheet.Cells(Row, 27).Value = SEM_SVA_S_FIDEL_n
+           End If
+         End If
+         'novoValor = Application.WorksheetFunction.VLookup(valor, namesMatch.Range("B2:D16"), 3, False)
+         
+   Next Row
+End Sub

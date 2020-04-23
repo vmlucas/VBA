@@ -1,0 +1,22 @@
+Sub Acerto()
+   Dim plano As String
+   
+   Set dataSheet = ActiveWorkbook.Sheets("Dados")
+   For Row = 3 To 450
+         'buca dados NBA
+         plano = dataSheet.Cells(Row, 8).Value
+           
+         If InStr(plano, "Oi Total TV + Fixo Avançado") > 0 Then
+             dataSheet.Cells(Row, 8).Value = "Oi Total Fixo + Tv Avançado"
+         End If
+         If InStr(plano, "Oi Total TV + Fixo Basico") > 0 Then
+             dataSheet.Cells(Row, 8).Value = "Oi Total Fixo + Tv Basico"
+         End If
+         If InStr(plano, "Oi Total TV + Fixo Intermediario") > 0 Then
+             dataSheet.Cells(Row, 8).Value = "Oi Total Fixo + Tv Intermediario"
+         End If
+         If InStr(plano, "Oi Total TV + Fixo Top") > 0 Then
+             dataSheet.Cells(Row, 8).Value = "Oi Total Fixo + Tv Top"
+         End If
+    Next Row
+End Sub

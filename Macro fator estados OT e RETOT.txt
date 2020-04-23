@@ -1,0 +1,26 @@
+Sub convert()
+   Dim fatorDF As Double
+  Dim fatorRN As Double
+  Dim fator As Double
+  Dim valor As Double
+  Dim soma As Double
+  
+  fatorRN = 1.03687768899816
+  fatorDF = 1.0215744189033
+  
+  fator = fatorRN 'adequar
+  
+  Set Sheet = ActiveWorkbook.Sheets("Sheet1")
+   
+  For Row = 5 To 436 'adequar range
+         valor = Sheet.Cells(Row, 18).Value * fator 'coluna r
+         soma = Sheet.Cells(Row, 16).Value + valor  'coluna p
+         
+         Sheet.Cells(Row, 18).Value = valor
+         t = Sheet.Cells(Row, 8).Value               'coluna h
+         If (Not t = "") Then
+            Sheet.Cells(Row, 8).Value = soma
+         End If
+         
+  Next Row
+End Sub

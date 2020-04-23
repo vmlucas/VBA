@@ -1,0 +1,55 @@
+Sub TRansform()
+   Dim tm_up As String
+   Dim uf As String
+   Dim velocBL As String
+   Dim SVA_FIDEL As String
+   Dim SEM_SVA_FIDEL As String
+   Dim SVA_S_FIDEL As String
+   Dim SEM_SVA_S_FIDEL As String
+   Dim SVA_FIDEL_n As String
+   Dim SEM_SVA_FIDEL_n As String
+   Dim SVA_S_FIDEL_n As String
+   Dim SEM_SVA_S_FIDEL_n As String
+   Dim pnbl As Integer
+         
+   'Set dataSheet = ActiveWorkbook.Sheets("Dados")
+   Set updateSheet = ActiveWorkbook.Sheets("Nova")
+   
+   For Row = 3 To 370
+         'buca dados NBA
+         uf = updateSheet.Cells(Row, 6).Value
+         SVA_FIDEL = updateSheet.Cells(Row, 21).Value
+         SEM_SVA_FIDEL = updateSheet.Cells(Row, 23).Value
+         SVA_S_FIDEL = updateSheet.Cells(Row, 25).Value
+         SEM_SVA_S_FIDEL = updateSheet.Cells(Row, 27).Value
+         
+         'SVA_RET_FIDEL_Velox_ATE1MB_ZC_JUL17_2_UP.AP_RR_F11769
+         '"SVA_RET_FIDEL_Velox_ATE1MB_ZNC_JUL17_2_UP._F11769"
+         
+         If (InStr(uf, "AP") > 0) Or (InStr(uf, "RR") > 0) Then
+         
+           If InStr(SVA_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              SVA_FIDEL_n = Left(SVA_FIDEL, Len(SVA_FIDEL) - 8)
+              SVA_FIDEL_n = SVA_FIDEL_n + "AP_RR_F11769"""
+              updateSheet.Cells(Row, 21).Value = SVA_FIDEL_n
+           End If
+           If InStr(SEM_SVA_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              SEM_SVA_FIDEL_n = Left(SEM_SVA_FIDEL, Len(SEM_SVA_FIDEL) - 8)
+              SEM_SVA_FIDEL_n = SEM_SVA_FIDEL_n + "AP_RR_F11769"""
+              updateSheet.Cells(Row, 23).Value = SEM_SVA_FIDEL_n
+           End If
+           If InStr(SVA_S_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              SVA_S_FIDEL_n = Left(SVA_S_FIDEL, Len(SVA_S_FIDEL) - 8)
+              SVA_S_FIDEL_n = SVA_S_FIDEL_n + "AP_RR_F11769"""
+              updateSheet.Cells(Row, 25).Value = SVA_S_FIDEL_n
+           End If
+           If InStr(SEM_SVA_S_FIDEL, """NAO_LOCALIZADO""") = 0 Then
+              SEM_SVA_S_FIDEL_n = Left(SEM_SVA_S_FIDEL, Len(SEM_SVA_S_FIDEL) - 8)
+              SEM_SVA_S_FIDEL_n = SEM_SVA_S_FIDEL_n + "AP_RR_F11769"""
+              updateSheet.Cells(Row, 27).Value = SEM_SVA_S_FIDEL_n
+           End If
+         End If
+         'novoValor = Application.WorksheetFunction.VLookup(valor, namesMatch.Range("B2:D16"), 3, False)
+         
+   Next Row
+End Sub

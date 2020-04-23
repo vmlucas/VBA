@@ -1,0 +1,56 @@
+Terminais OT
+
+Oi Total de Migração e Oi Total de Aquisição
+DTs e Estratégias Multiprodutos
+
+Blidagem, Retenção, Blindagem 3P RES ( OT res ), Oi total TV + Fixo
+Retenção Fx/Bl
+Retenção TV
+Cobrança
+Blindagem Fx/Bl
+Blindagem Oi Total Residencial (3P)
+Blindagem Oi Total TV + Fixo (2P)
+
+AQUISIçÂO:
+Alavancas:Cobrança OT	
+Estratégia:Movel_Precos_Cobranca	
+DTs: DT_Preco_Fidel_Movel_3PMovel_4P_DACC_Cobranca
+	 DT_Preco_Fidel_Movel_3PRES_DACC_Cobranca
+	 DT_Preco_Fidel_Movel_2PTV
+	 DT_Preco_Fidel_Movel_2PBandaLarga
+
+Alavancas: Retenção | Blindagem | RACO | Refidel	
+2P Fixo + Velox		
+Estratégia: OiTotalFXBLPrecos
+DTs:DT_Preco_OiTotalFXBL
+	
+Alavancas: Retenção fxbl
+2P Fixo + TV
+Estratégia: COREPrecoMultiproduto2P
+DTs:PriceMulti_2P_Fixo_TV_Aquisicao_1, PriceMulti_2P_Fixo_TV_Aquisicao_2
+
+Alavancas: S2S Convergente
+3P Residêncial
+Estratégia: CorePrecoMultiproduto3PAquisicao
+DTs:S2SConvMulti_3P_Aquisicao_1, S2SConvMulti_3P_Aquisicao_2, PriceMultiproduto_3P_Aquisicao_1, PriceMultiproduto_3P_Aquisicao_2
+
+
+MIGRAÇÃO:
+Alavancas:
+Estratégia: COREPrecoMultiproduto2P, CorePrecoMultiproduto3PMigracao, CorePrecoMultiproduto3PAquisica
+
+CorePrecoMultiproduto3PMigracao
+DTs:PriceMultiproduto_35_mig_1, PriceMultiproduto_35_mig_3, PriceMultiproduto_35_mig_6
+    PriceMultiproduto_20_25_mig_1, PriceMultiproduto_20_25_mig_3, PriceMultiproduto_20_25_mig_6
+	PriceMultiproduto_5_15_mig_1, PriceMultiproduto_5_15_mig_3, PriceMultiproduto_5_15_mig_6
+	PriceMultiproduto_03_2_mig_1, PriceMultiproduto_03_2_mig_3, PriceMultiproduto_03_2_mig_6
+	
+COREPrecoMultiproduto2P
+DTs:Blind_Pricemulti_2p_fixo_tv_mig_1, Blind_Pricemulti_2p_fixo_tv_mig_3, Blind_Pricemulti_2p_fixo_tv_mig_6
+    Blindfxbl_Pricemulti_2p_fixo_tv_mig_1, Blindfxbl_Pricemulti_2p_fixo_tv_mig_3, Blindfxbl_Pricemulti_2p_fixo_tv_mig_6	
+	Pricemulti_2p_fixo_tv_mig_1, Pricemulti_2p_fixo_tv_mig_3, Pricemulti_2p_fixo_tv_mig_6
+	Pricemulti_2p_fixo_tv_mig_1_p2, Pricemulti_2p_fixo_tv_mig_3_p2, Pricemulti_2p_fixo_tv_mig_6_p2
+
+DAta Table
+MKTNBA-SR-RentabilizacaoTV-AddOn	
+	

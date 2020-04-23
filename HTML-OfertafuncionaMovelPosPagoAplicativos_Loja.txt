@@ -1,0 +1,28 @@
+
+
+Clientes que aderirem esta oferta terão os aplicativos abaixo inclusos no plano:
+<br><br>
+<strong>Oi Revistas</strong>
+<br>
+Leia no seu smartphone, tablet ou computador mais de 250 títulos de revistas como Veja, Exame, Vip, e Malu.
+<br>
+<br>
+<strong>Oi Livros Narrados
+<br></strong>
+Escute milhares de audiolivros como A Arte da Guerra e Drácula. Ideal para quem não tem tempo de ler livros e prefere ouvir.
+<br>
+<?xml:namespace prefix = "pega" />
+<pega:when test="OfertaSelecionada.OfferDetails.MovelPackage == 'Oi Mais Avançado' || 
+                 OfertaSelecionada.OfferDetails.MovelPackage == 'Oi Mais Top'">
+<br>
+<strong>Clube de Quadrinhos
+<br></strong>
+Oferece um acervo&nbsp;dos melhores quadrinhos, como Disney, Super Heróis e muito mais. São centenas de títulos completes para ler quando e onde quiser, direto na tela do smartphone, tablet ou computador. Para utiliza-lo, o cliente deverá baixar o aplicativo na App Store ou Google Play.&nbsp;
+<br>
+</pega:when>
+<pega:when test="OfertaSelecionada.OfferDetails.MovelPackage == 'Oi Mais Intermediario'">
+<br>
+<strong>Coleção Oi
+<br></strong>
+Assista filmes, series e desenhos quando e onde quiser.
+</pega:when> 

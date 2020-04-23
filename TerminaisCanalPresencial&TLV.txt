@@ -1,0 +1,40 @@
+Terminais Canal Presencial e Tele vendas ( Webservice serviços )
+
+PAra TLV verificar o grupo ServicosOiNBA e ver a versão
+
+OBS: Os Switches das estratégias usam os objetos GrupoPrecoAquisicao1 e GrupoPrecoAquisicao2 v.1.19.35. Então temos que editar as DTs aq_1 (todas UF) 
+e Aq2 (RS).
+
+TOP ofertas na tabela do banco 
+tb_parametro_top_oferta
+
+
+TLV - 3P Residencial
+Estratégias: ServicosPreco
+DTs:OTAddon_Aq_1, OTAddon_Aq_2 (DTs verificar o campo OiTotalPlano com os valores aceitos), OTPlano_Aq
+user: Webservice com configurações no XML 
+Tel:
+
+
+TLV – Receptivo 3P e 4P	
+Estratégias: ServicosPreco
+DTs:OTAddon_Aq_1, OTAddon_Aq_2, OTPlano_Aq
+user: Webservice com configurações no XML 
+Tel:
+
+
+TLV – Receptivo Unificado
+Estratégias: ServicosPreco
+DTs:OTAddon_Aq_1, OTAddon_Aq_2, OTPlano_Aq
+user: Webservice com configurações no XML 
+Tel:
+
+
+Canal Presencial	
+Estratégias: LOJAPrecoMP, LOJAPrecoAvulso
+DTs:Alone:FixoAddon_Aq, FixoPlano_Aq / Multiporduto: OTAddon_Aq_1, OTAddon_Aq_2, OTPlano_Aq, OTAddon_PortaOciosa_Aq_1, OTAddon_PortaOciosa_Aq_2,
+          POSADDON_aq e POsPLANO_aq
+
+
+CPF: Qualquer CPF
+user: OperatorLojaPropriaOferta
